@@ -1,6 +1,7 @@
+
 import React from 'react';
-import { Category, CompanySize } from '../types';
-import Tool from './Tool';
+import { Category, CompanySize } from '../types.ts';
+import Tool from './Tool.tsx';
 
 interface CategoryCardProps {
   category: Category;
@@ -30,7 +31,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, activeFilter }) =
       className={`rounded-xl p-4 flex flex-col gap-2 border border-white/10 ${category.bgColor}`}
     >
       <h3 className={`font-bold text-lg ${category.textColor}`}>{category.title}</h3>
-      <div className="flex flex-col gap-1 text-sm text-gray-300">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-x-4 gap-y-1 text-sm text-gray-300">
         {category.tools.length > 0 ? (
           category.tools.map((tool) => (
             <Tool key={tool.name} tool={tool} activeFilter={activeFilter} />

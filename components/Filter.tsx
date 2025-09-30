@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { CompanySize } from '../types';
+import { CompanySize } from '../types.ts';
 
 interface FilterProps {
   activeFilter: CompanySize | 'any';

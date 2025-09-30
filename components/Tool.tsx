@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Tool as ToolType, CompanySize } from '../types';
+import { Tool as ToolType, CompanySize } from '../types.ts';
 
 interface ToolProps {
   tool: ToolType;

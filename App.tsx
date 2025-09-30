@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import Header from './components/Header';
-import Filter from './components/Filter';
-import StackDiagram from './components/StackDiagram';
-import WorkflowGuide from './components/WorkflowGuide';
-import { CompanySize } from './types';
+import Header from './components/Header.tsx';
+import Filter from './components/Filter.tsx';
+import StackDiagram from './components/StackDiagram.tsx';
+import WorkflowGuide from './components/WorkflowGuide.tsx';
+import { CompanySize } from './types.ts';
 
 const App: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<CompanySize | 'any'>('any');

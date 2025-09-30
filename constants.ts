@@ -1,5 +1,5 @@
 
-import { Category, CompanySize } from './types';
+import { Category, CompanySize } from './types.ts';
 
 export const STACK_DATA: Category[] = [
   // Top Row

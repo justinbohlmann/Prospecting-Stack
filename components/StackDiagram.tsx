@@ -1,7 +1,8 @@
+
 import React from 'react';
-import CategoryCard from './CategoryCard';
-import { STACK_DATA } from '../constants';
-import { CompanySize } from '../types';
+import CategoryCard from './CategoryCard.tsx';
+import { STACK_DATA } from '../constants.ts';
+import { CompanySize } from '../types.ts';
 
 interface StackDiagramProps {
   activeFilter: CompanySize | 'any';
