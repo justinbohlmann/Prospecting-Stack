@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Prospecting Stack</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
       body {
         background-color: #101010;
         color: #f0f0f0;
       }
-      @media (max-width: 1023px) { /* Tailwind's lg breakpoint */
+      @media (max-width: 1023px) {
+        /* Tailwind's lg breakpoint */
         .responsive-grid {
           display: flex !important;
           flex-direction: column !important;
@@ -25,82 +32,532 @@
         }
       }
     </style>
-</head>
+  </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    
+
     <script type="text/babel">
       const { useState } = React;
-      
+
       const CompanySize = {
-        Startup: 'startup',
-        Scaleup: 'scaleup',
-        Enterprise: 'enterprise'
+        Startup: "startup",
+        Scaleup: "scaleup",
+        Enterprise: "enterprise",
       };
-      
+
       const STACK_DATA = [
+        // Top Row
         {
           title: "Video",
-          tools: [
-            { name: "Loom", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
-            { name: "Vidyard", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
-          ],
           gridArea: "video",
-          bgColor: "bg-fuchsia-500/20",
-          textColor: "text-fuchsia-400",
-          shadowColor: "fuchsia-500"
+          bgColor: "bg-fuchsia-800/80",
+          textColor: "text-fuchsia-300",
+          shadowColor: "fuchsia-500",
+          tools: [
+            {
+              name: "Loom",
+              sizes: [
+                CompanySize.Startup,
+                CompanySize.Scaleup,
+                CompanySize.Enterprise,
+              ],
+            },
+            {
+              name: "Sendspark",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Vidyard",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
         },
         {
           title: "Email Warming",
-          tools: [
-            { name: "Warmbox", sizes: [CompanySize.Startup] },
-            { name: "Lemwarm", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
-          ],
           gridArea: "email-warming",
-          bgColor: "bg-violet-500/20",
-          textColor: "text-violet-400",
-          shadowColor: "violet-500"
+          bgColor: "bg-violet-800/80",
+          textColor: "text-violet-300",
+          shadowColor: "violet-500",
+          tools: [
+            {
+              name: "Instantly",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Smartlead",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+          ],
         },
         {
           title: "AI Emails",
-          tools: [
-            { name: "Outreach", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] },
-            { name: "SalesLoft", sizes: [CompanySize.Enterprise] }
-          ],
           gridArea: "ai-emails",
-          bgColor: "bg-indigo-500/20",
-          textColor: "text-indigo-400",
-          shadowColor: "indigo-500"
+          bgColor: "bg-violet-800/80",
+          textColor: "text-violet-300",
+          shadowColor: "violet-500",
+          tools: [
+            {
+              name: "Regie.ai",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Lavender.ai",
+              sizes: [
+                CompanySize.Startup,
+                CompanySize.Scaleup,
+                CompanySize.Enterprise,
+              ],
+            },
+          ],
         },
         {
-          title: "LinkedIn Automation",
-          tools: [
-            { name: "PhantomBuster", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
-            { name: "LinkedIn Sales Navigator", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
-          ],
+          title: "LI Automation",
           gridArea: "li-automation",
-          bgColor: "bg-blue-500/20",
-          textColor: "text-blue-400",
-          shadowColor: "blue-500"
+          bgColor: "bg-fuchsia-800/80",
+          textColor: "text-fuchsia-300",
+          shadowColor: "fuchsia-500",
+          tools: [
+            { name: "Dripify", sizes: [CompanySize.Startup] },
+            { name: "Expand", sizes: [CompanySize.Scaleup] },
+            {
+              name: "Heyreach",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
         },
         {
           title: "Job Changers",
-          tools: [
-            { name: "Apollo", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
-            { name: "ZoomInfo", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
-          ],
           gridArea: "job-changers",
-          bgColor: "bg-gray-500/20",
-          textColor: "text-gray-400",
-          shadowColor: "gray-500"
-        }
+          bgColor: "bg-fuchsia-800/80",
+          textColor: "text-fuchsia-300",
+          shadowColor: "fuchsia-500",
+          tools: [
+            {
+              name: "Champify",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "UserGems",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
+        {
+          title: "Deanonymize website visitors",
+          gridArea: "deanonymize",
+          bgColor: "bg-indigo-800/80",
+          textColor: "text-indigo-300",
+          shadowColor: "indigo-500",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "RB2B", sizes: [CompanySize.Scaleup] },
+            {
+              name: "Clearbit Reveal",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "6Sense", sizes: [CompanySize.Enterprise] },
+            { name: "Factors.ai", sizes: [CompanySize.Scaleup] },
+            { name: "Vector", sizes: [CompanySize.Startup] },
+            {
+              name: "Koala",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Warmly", sizes: [CompanySize.Startup] },
+            {
+              name: "Qualified",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        // Second Row from Top
+        {
+          title: "Warm Intros",
+          gridArea: "warm-intros",
+          bgColor: "bg-fuchsia-800/80",
+          textColor: "text-fuchsia-300",
+          shadowColor: "fuchsia-500",
+          tools: [
+            {
+              name: "Cabal",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Connect the Dots",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "The Swarm", sizes: [CompanySize.Startup] },
+          ],
+        },
+        {
+          title: "Dialers",
+          gridArea: "dialers",
+          bgColor: "bg-violet-800/80",
+          textColor: "text-violet-300",
+          shadowColor: "violet-500",
+          tools: [
+            {
+              name: "Frontspin",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Nooks", sizes: [CompanySize.Scaleup] },
+            {
+              name: "Orum",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
+        {
+          title: "LinkedIn",
+          gridArea: "linkedin",
+          bgColor: "bg-indigo-700/80",
+          textColor: "text-indigo-200",
+          shadowColor: "indigo-400",
+          tools: [],
+        },
+        {
+          title: "Signals",
+          gridArea: "signals",
+          bgColor: "bg-indigo-700/80",
+          textColor: "text-indigo-200",
+          shadowColor: "indigo-400",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Common Room",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Koala",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Unify", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        // Central Row
+        {
+          title: "Scheduling",
+          gridArea: "scheduling",
+          bgColor: "bg-indigo-800/80",
+          textColor: "text-indigo-300",
+          shadowColor: "indigo-500",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Cal", sizes: [CompanySize.Startup] },
+            {
+              name: "Calendly",
+              sizes: [
+                CompanySize.Startup,
+                CompanySize.Scaleup,
+                CompanySize.Enterprise,
+              ],
+            },
+            {
+              name: "Chili Piper",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Outreach", sizes: [CompanySize.Enterprise] },
+            { name: "SalesLoft", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        {
+          title: "Conversational Intelligence",
+          gridArea: "conv-intel",
+          bgColor: "bg-indigo-700/80",
+          textColor: "text-indigo-200",
+          shadowColor: "indigo-400",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Attention",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Clari", sizes: [CompanySize.Enterprise] },
+            { name: "Fathom", sizes: [CompanySize.Startup] },
+            {
+              name: "Gong",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Granola", sizes: [CompanySize.Startup] },
+            { name: "Outreach", sizes: [CompanySize.Enterprise] },
+            { name: "SalesLoft", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Scratchpad",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        {
+          title: "Sales Engagement",
+          gridArea: "sales-engagement",
+          bgColor: "bg-indigo-700/80",
+          textColor: "text-indigo-200",
+          shadowColor: "indigo-400",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Amplemarket",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Clari", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Gong",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "HubSpot",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Outreach", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Salesforce",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "SalesLoft", sizes: [CompanySize.Enterprise] },
+            { name: "Unify", sizes: [CompanySize.Enterprise] },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Instantly",
+              note: "(high volume)",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Smartlead",
+              note: "(high volume)",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+          ],
+        },
+        {
+          title: "Data",
+          gridArea: "data",
+          bgColor: "bg-indigo-700/80",
+          textColor: "text-indigo-200",
+          shadowColor: "indigo-400",
+          tools: [
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Clay", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
+            {
+              name: "Cognism",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "LeadIQ", sizes: [CompanySize.Scaleup] },
+            {
+              name: "LinkedIn",
+              sizes: [
+                CompanySize.Startup,
+                CompanySize.Scaleup,
+                CompanySize.Enterprise,
+              ],
+            },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        {
+          title: "Intent Data",
+          gridArea: "intent-data",
+          bgColor: "bg-indigo-800/80",
+          textColor: "text-indigo-300",
+          shadowColor: "indigo-500",
+          tools: [
+            { name: "6Sense", sizes: [CompanySize.Enterprise] },
+            { name: "Demandbase", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Apollo",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Bombora",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
+        {
+          title: "Scoring",
+          gridArea: "scoring",
+          bgColor: "bg-indigo-800/80",
+          textColor: "text-indigo-300",
+          shadowColor: "indigo-500",
+          tools: [
+            {
+              name: "MadKudu",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Pocus",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Demandbase", sizes: [CompanySize.Enterprise] },
+            { name: "Zoominfo", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        // Main CRM Block and neighbours
+        {
+          title: "Lead Routing",
+          gridArea: "lead-routing",
+          bgColor: "bg-indigo-800/80",
+          textColor: "text-indigo-300",
+          shadowColor: "indigo-500",
+          tools: [
+            { name: "Ringlead (Zoominfo)", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Leandata",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "ChiliPiper",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Default*", sizes: [CompanySize.Startup] },
+          ],
+        },
+        {
+          title: "CRM",
+          gridArea: "crm",
+          bgColor: "bg-blue-700/80",
+          textColor: "text-blue-200",
+          shadowColor: "blue-400",
+          tools: [
+            {
+              name: "Salesforce",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Hubspot",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Attio*", sizes: [CompanySize.Startup] },
+            { name: "Clarify*", sizes: [CompanySize.Startup] },
+            { name: "Day*", sizes: [CompanySize.Startup] },
+          ],
+        },
+        {
+          title: "Chat",
+          gridArea: "chat",
+          bgColor: "bg-gray-800/80",
+          textColor: "text-gray-300",
+          shadowColor: "gray-500",
+          tools: [
+            { name: "Conversica", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Drift",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Intercom",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            {
+              name: "Qualified",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
+        // Bottom Row
+        {
+          title: "MAP",
+          gridArea: "map",
+          bgColor: "bg-gray-800/80",
+          textColor: "text-gray-300",
+          shadowColor: "gray-500",
+          tools: [
+            {
+              name: "HubSpot",
+              sizes: [CompanySize.Startup, CompanySize.Scaleup],
+            },
+            { name: "Inflection.io*", sizes: [CompanySize.Scaleup] },
+            { name: "Marketo (Adobe)", sizes: [CompanySize.Enterprise] },
+            { name: "Pardot (Salesforce)", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        {
+          title: "Reverse ETL",
+          gridArea: "reverse-etl",
+          bgColor: "bg-gray-800/80",
+          textColor: "text-gray-300",
+          shadowColor: "gray-500",
+          tools: [
+            {
+              name: "Census",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Hightouch",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
+        {
+          title: "Data warehouse",
+          gridArea: "data-warehouse",
+          bgColor: "bg-gray-800/80",
+          textColor: "text-gray-300",
+          shadowColor: "gray-500",
+          tools: [
+            {
+              name: "Big Query (Google)",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Redshift", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Rudderstack",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Segment (Twilio)",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            { name: "Snowflake", sizes: [CompanySize.Enterprise] },
+          ],
+        },
+        {
+          title: "BI",
+          gridArea: "bi",
+          bgColor: "bg-gray-800/80",
+          textColor: "text-gray-300",
+          shadowColor: "gray-500",
+          tools: [
+            { name: "Tableau (Salesforce)", sizes: [CompanySize.Enterprise] },
+            {
+              name: "Looker (Google)",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+            {
+              name: "Domo",
+              sizes: [CompanySize.Scaleup, CompanySize.Enterprise],
+            },
+          ],
+        },
       ];
-      
+
       const Header = () => {
         return (
           <header className="flex flex-col items-center text-center mb-8 md:mb-12">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-fuchsia-400" style={{ textShadow: '0 0 10px #ec4899, 0 0 20px #ec4899' }}>
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-fuchsia-400"
+              style={{ textShadow: "0 0 10px #ec4899, 0 0 20px #ec4899" }}
+            >
               Prospecting Stack
             </h1>
             <div className="mt-4">
@@ -108,18 +565,20 @@
                 <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-600 to-violet-600 rounded-lg blur opacity-75"></div>
                 <div className="relative px-4 py-2 bg-black rounded-lg leading-none">
                   <span className="text-gray-300 text-sm">hand-curated by</span>
-                  <span className="ml-2 font-bold text-lg text-white">The Signal</span>
+                  <span className="ml-2 font-bold text-lg text-white">
+                    The Signal
+                  </span>
                 </div>
               </div>
             </div>
           </header>
         );
       };
-      
+
       const FilterButton = ({ label, sublabel, isActive, onClick }) => {
         const activeClasses = "bg-fuchsia-600/80 ring-2 ring-fuchsia-400";
         const inactiveClasses = "bg-gray-800/80 hover:bg-gray-700/80";
-        
+
         return (
           <button
             onClick={onClick}
@@ -128,11 +587,13 @@
             }`}
           >
             <span className="font-bold">{label}</span>
-            {sublabel && <span className="text-xs text-gray-300 ml-2">{sublabel}</span>}
+            {sublabel && (
+              <span className="text-xs text-gray-300 ml-2">{sublabel}</span>
+            )}
           </button>
         );
       };
-      
+
       const Filter = ({ activeFilter, setActiveFilter }) => {
         return (
           <div className="flex flex-col items-center gap-4 mb-8 md:mb-12">
@@ -166,10 +627,11 @@
           </div>
         );
       };
-      
+
       const Tool = ({ tool, activeFilter }) => {
-        const isVisible = activeFilter === "any" || tool.sizes.includes(activeFilter);
-        
+        const isVisible =
+          activeFilter === "any" || tool.sizes.includes(activeFilter);
+
         return (
           <div
             className={`transition-opacity duration-300 ${
@@ -177,11 +639,13 @@
             }`}
           >
             <span>{tool.name}</span>
-            {tool.note && <span className="text-gray-400 text-xs ml-1">{tool.note}</span>}
+            {tool.note && (
+              <span className="text-gray-400 text-xs ml-1">{tool.note}</span>
+            )}
           </div>
         );
       };
-      
+
       const CategoryCard = ({ category, activeFilter }) => {
         const TAILWIND_COLOR_MAP = {
           "fuchsia-500": "#d946ef",
@@ -191,14 +655,15 @@
           "blue-400": "#60a5fa",
           "gray-500": "#6b7280",
         };
-        
-        const shadowColorValue = TAILWIND_COLOR_MAP[category.shadowColor] || "transparent";
-        
+
+        const shadowColorValue =
+          TAILWIND_COLOR_MAP[category.shadowColor] || "transparent";
+
         const cardStyle = {
           gridArea: category.gridArea,
           boxShadow: `0 0 15px -3px ${shadowColorValue}, inset 0 0 8px -2px ${shadowColorValue}`,
         };
-        
+
         return (
           <div
             style={cardStyle}
@@ -210,7 +675,11 @@
             <div className="grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-x-4 gap-y-1 text-sm text-gray-300">
               {category.tools.length > 0 ? (
                 category.tools.map((tool) => (
-                  <Tool key={tool.name} tool={tool} activeFilter={activeFilter} />
+                  <Tool
+                    key={tool.name}
+                    tool={tool}
+                    activeFilter={activeFilter}
+                  />
                 ))
               ) : (
                 <div className="h-full w-full min-h-[1rem]"></div>
@@ -219,7 +688,7 @@
           </div>
         );
       };
-      
+
       const StackDiagram = ({ activeFilter }) => {
         return (
           <div
@@ -229,7 +698,12 @@
               gridAutoRows: "minmax(40px, auto)",
               gridTemplateAreas: `
                 ". . video video email-warming email-warming ai-emails . li-automation li-automation job-changers job-changers"
-                ". . video video email-warming email-warming ai-emails . li-automation li-automation job-changers job-changers"
+                ". warm-intros warm-intros dialers dialers linkedin signals signals signals deanonymize deanonymize deanonymize"
+                "scheduling scheduling conv-intel conv-intel sales-engagement sales-engagement sales-engagement sales-engagement data data intent-data intent-data"
+                "lead-routing lead-routing conv-intel conv-intel sales-engagement sales-engagement sales-engagement sales-engagement data data scoring scoring"
+                "chat chat crm crm crm crm crm crm crm crm . ."
+                "map map crm crm crm crm crm crm crm crm . ."
+                "map map reverse-etl reverse-etl data-warehouse data-warehouse data-warehouse data-warehouse bi bi . ."
               `,
             }}
           >
@@ -243,7 +717,7 @@
           </div>
         );
       };
-      
+
       const WorkflowGuide = () => {
         const ArrowRight = () => (
           <svg
@@ -253,16 +727,23 @@
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            ></path>
           </svg>
         );
-        
+
         const WorkflowStep = ({ bgColor, children }) => (
-          <div className={`px-4 py-2 rounded-full font-semibold text-white ${bgColor}`}>
+          <div
+            className={`px-4 py-2 rounded-full font-semibold text-white ${bgColor}`}
+          >
             {children}
           </div>
         );
-        
+
         return (
           <div className="mt-12 flex flex-col items-center">
             <div className="flex items-center justify-center flex-wrap gap-2">
@@ -280,23 +761,26 @@
           </div>
         );
       };
-      
+
       const App = () => {
         const [activeFilter, setActiveFilter] = useState("any");
-        
+
         return (
           <div className="bg-[#101010] min-h-screen font-sans p-4 md:p-8 lg:p-12 flex flex-col items-center">
             <div className="w-full max-w-7xl">
               <Header />
-              <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+              <Filter
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
+              />
               <StackDiagram activeFilter={activeFilter} />
               <WorkflowGuide />
             </div>
           </div>
         );
       };
-      
-      const root = ReactDOM.createRoot(document.getElementById('root'));
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(<App />);
     </script>
   </body>
