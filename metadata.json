@@ -1,0 +1,5 @@
+{
+  "name": "Interactive Prospecting Stack",
+  "description": "An interactive visualization of a modern sales prospecting stack, allowing users to filter tools based on company size. Based on the diagram by The Signal.",
+  "requestFramePermissions": []
+}
