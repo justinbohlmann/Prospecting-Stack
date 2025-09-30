@@ -12,7 +12,8 @@
         background-color: #101010;
         color: #f0f0f0;
       }
-      @media (max-width: 1023px) { /* Tailwind's lg breakpoint */
+      @media (max-width: 1023px) {
+        /* Tailwind's lg breakpoint */
         .responsive-grid {
           display: flex !important;
           flex-direction: column !important;
@@ -24,20 +25,24 @@
         }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-    "react": "https://aistudiocdn.com/react@^19.1.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "./node_modules/react/umd/react.development.js",
+          "react-dom": "./node_modules/react-dom/umd/react-dom.development.js"
+        }
+      }
+    </script>
+  </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!-- Update the script type to text/babel and add presets for React/TS -->
-    <script type="text/babel" data-type="module" data-presets="react,typescript" src="./index.tsx"></script>
+    <script
+      type="text/babel"
+      data-type="module"
+      data-presets="react,typescript"
+      src="./index.tsx"
+    ></script>
   </body>
 </html>

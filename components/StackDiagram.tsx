@@ -1,11 +1,10 @@
-
-import React from 'react';
-import CategoryCard from './CategoryCard.tsx';
-import { STACK_DATA } from '../constants.ts';
-import { CompanySize } from '../types.ts';
+import React from "react";
+import CategoryCard from "./CategoryCard";
+import { STACK_DATA } from "../constants";
+import { CompanySize } from "../types";
 
 interface StackDiagramProps {
-  activeFilter: CompanySize | 'any';
+  activeFilter: CompanySize | "any";
 }
 
 const StackDiagram: React.FC<StackDiagramProps> = ({ activeFilter }) => {
@@ -13,8 +12,8 @@ const StackDiagram: React.FC<StackDiagramProps> = ({ activeFilter }) => {
     <div
       className="grid gap-4 w-full responsive-grid"
       style={{
-        gridTemplateColumns: 'repeat(12, 1fr)',
-        gridAutoRows: 'minmax(40px, auto)',
+        gridTemplateColumns: "repeat(12, 1fr)",
+        gridAutoRows: "minmax(40px, auto)",
         gridTemplateAreas: `
           ". . video video email-warming email-warming ai-emails . li-automation li-automation job-changers job-changers"
           ". warm-intros warm-intros dialers dialers linkedin signals signals signals deanonymize deanonymize deanonymize"
@@ -27,7 +26,11 @@ const StackDiagram: React.FC<StackDiagramProps> = ({ activeFilter }) => {
       }}
     >
       {STACK_DATA.map((category) => (
-        <CategoryCard key={category.title} category={category} activeFilter={activeFilter} />
+        <CategoryCard
+          key={category.title}
+          category={category}
+          activeFilter={activeFilter}
+        />
       ))}
     </div>
   );
