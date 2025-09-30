@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Prospecting Stack</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add Babel Standalone for in-browser JSX & TypeScript compilation -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
       body {
         background-color: #101010;
         color: #f0f0f0;
       }
-      @media (max-width: 1023px) {
-        /* Tailwind's lg breakpoint */
+      @media (max-width: 1023px) { /* Tailwind's lg breakpoint */
         .responsive-grid {
           display: flex !important;
           flex-direction: column !important;
@@ -25,25 +25,279 @@
         }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://unpkg.com/react@18/umd/react.development.js",
-    "react-dom": "https://unpkg.com/react-dom@18/umd/react-dom.development.js",
-    "react-dom/client": "https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-  }
-}
-</script>
-  </head>
+</head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- Update the script type to text/babel and add presets for React/TS -->
-    <script
-      type="text/babel"
-      data-type="module"
-      data-presets="react,typescript"
-      src="./index.tsx"
-    ></script>
+    
+    <script type="text/babel">
+      const { useState } = React;
+      
+      const CompanySize = {
+        Startup: 'startup',
+        Scaleup: 'scaleup',
+        Enterprise: 'enterprise'
+      };
+      
+      const STACK_DATA = [
+        {
+          title: "Video",
+          tools: [
+            { name: "Loom", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
+            { name: "Vidyard", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
+          ],
+          gridArea: "video",
+          bgColor: "bg-fuchsia-500/20",
+          textColor: "text-fuchsia-400",
+          shadowColor: "fuchsia-500"
+        },
+        {
+          title: "Email Warming",
+          tools: [
+            { name: "Warmbox", sizes: [CompanySize.Startup] },
+            { name: "Lemwarm", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
+          ],
+          gridArea: "email-warming",
+          bgColor: "bg-violet-500/20",
+          textColor: "text-violet-400",
+          shadowColor: "violet-500"
+        },
+        {
+          title: "AI Emails",
+          tools: [
+            { name: "Outreach", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] },
+            { name: "SalesLoft", sizes: [CompanySize.Enterprise] }
+          ],
+          gridArea: "ai-emails",
+          bgColor: "bg-indigo-500/20",
+          textColor: "text-indigo-400",
+          shadowColor: "indigo-500"
+        },
+        {
+          title: "LinkedIn Automation",
+          tools: [
+            { name: "PhantomBuster", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
+            { name: "LinkedIn Sales Navigator", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
+          ],
+          gridArea: "li-automation",
+          bgColor: "bg-blue-500/20",
+          textColor: "text-blue-400",
+          shadowColor: "blue-500"
+        },
+        {
+          title: "Job Changers",
+          tools: [
+            { name: "Apollo", sizes: [CompanySize.Startup, CompanySize.Scaleup] },
+            { name: "ZoomInfo", sizes: [CompanySize.Scaleup, CompanySize.Enterprise] }
+          ],
+          gridArea: "job-changers",
+          bgColor: "bg-gray-500/20",
+          textColor: "text-gray-400",
+          shadowColor: "gray-500"
+        }
+      ];
+      
+      const Header = () => {
+        return (
+          <header className="flex flex-col items-center text-center mb-8 md:mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-fuchsia-400" style={{ textShadow: '0 0 10px #ec4899, 0 0 20px #ec4899' }}>
+              Prospecting Stack
+            </h1>
+            <div className="mt-4">
+              <div className="relative inline-block">
+                <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-600 to-violet-600 rounded-lg blur opacity-75"></div>
+                <div className="relative px-4 py-2 bg-black rounded-lg leading-none">
+                  <span className="text-gray-300 text-sm">hand-curated by</span>
+                  <span className="ml-2 font-bold text-lg text-white">The Signal</span>
+                </div>
+              </div>
+            </div>
+          </header>
+        );
+      };
+      
+      const FilterButton = ({ label, sublabel, isActive, onClick }) => {
+        const activeClasses = "bg-fuchsia-600/80 ring-2 ring-fuchsia-400";
+        const inactiveClasses = "bg-gray-800/80 hover:bg-gray-700/80";
+        
+        return (
+          <button
+            onClick={onClick}
+            className={`px-4 py-2 rounded-full transition-all duration-300 text-white ${
+              isActive ? activeClasses : inactiveClasses
+            }`}
+          >
+            <span className="font-bold">{label}</span>
+            {sublabel && <span className="text-xs text-gray-300 ml-2">{sublabel}</span>}
+          </button>
+        );
+      };
+      
+      const Filter = ({ activeFilter, setActiveFilter }) => {
+        return (
+          <div className="flex flex-col items-center gap-4 mb-8 md:mb-12">
+            <span className="text-lg text-gray-400">Best tools for:</span>
+            <div className="flex items-center justify-center flex-wrap gap-2">
+              <FilterButton
+                label="Any"
+                sublabel=""
+                isActive={activeFilter === "any"}
+                onClick={() => setActiveFilter("any")}
+              />
+              <FilterButton
+                label="Startup"
+                sublabel="< 2 reps"
+                isActive={activeFilter === CompanySize.Startup}
+                onClick={() => setActiveFilter(CompanySize.Startup)}
+              />
+              <FilterButton
+                label="Scaleup"
+                sublabel="2-25 reps"
+                isActive={activeFilter === CompanySize.Scaleup}
+                onClick={() => setActiveFilter(CompanySize.Scaleup)}
+              />
+              <FilterButton
+                label="Enterprise"
+                sublabel="25+ reps"
+                isActive={activeFilter === CompanySize.Enterprise}
+                onClick={() => setActiveFilter(CompanySize.Enterprise)}
+              />
+            </div>
+          </div>
+        );
+      };
+      
+      const Tool = ({ tool, activeFilter }) => {
+        const isVisible = activeFilter === "any" || tool.sizes.includes(activeFilter);
+        
+        return (
+          <div
+            className={`transition-opacity duration-300 ${
+              isVisible ? "opacity-100" : "opacity-40"
+            }`}
+          >
+            <span>{tool.name}</span>
+            {tool.note && <span className="text-gray-400 text-xs ml-1">{tool.note}</span>}
+          </div>
+        );
+      };
+      
+      const CategoryCard = ({ category, activeFilter }) => {
+        const TAILWIND_COLOR_MAP = {
+          "fuchsia-500": "#d946ef",
+          "violet-500": "#8b5cf6",
+          "indigo-500": "#6366f1",
+          "indigo-400": "#818cf8",
+          "blue-400": "#60a5fa",
+          "gray-500": "#6b7280",
+        };
+        
+        const shadowColorValue = TAILWIND_COLOR_MAP[category.shadowColor] || "transparent";
+        
+        const cardStyle = {
+          gridArea: category.gridArea,
+          boxShadow: `0 0 15px -3px ${shadowColorValue}, inset 0 0 8px -2px ${shadowColorValue}`,
+        };
+        
+        return (
+          <div
+            style={cardStyle}
+            className={`rounded-xl p-4 flex flex-col gap-2 border border-white/10 ${category.bgColor}`}
+          >
+            <h3 className={`font-bold text-lg ${category.textColor}`}>
+              {category.title}
+            </h3>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-x-4 gap-y-1 text-sm text-gray-300">
+              {category.tools.length > 0 ? (
+                category.tools.map((tool) => (
+                  <Tool key={tool.name} tool={tool} activeFilter={activeFilter} />
+                ))
+              ) : (
+                <div className="h-full w-full min-h-[1rem]"></div>
+              )}
+            </div>
+          </div>
+        );
+      };
+      
+      const StackDiagram = ({ activeFilter }) => {
+        return (
+          <div
+            className="grid gap-4 w-full responsive-grid"
+            style={{
+              gridTemplateColumns: "repeat(12, 1fr)",
+              gridAutoRows: "minmax(40px, auto)",
+              gridTemplateAreas: `
+                ". . video video email-warming email-warming ai-emails . li-automation li-automation job-changers job-changers"
+                ". . video video email-warming email-warming ai-emails . li-automation li-automation job-changers job-changers"
+              `,
+            }}
+          >
+            {STACK_DATA.map((category) => (
+              <CategoryCard
+                key={category.title}
+                category={category}
+                activeFilter={activeFilter}
+              />
+            ))}
+          </div>
+        );
+      };
+      
+      const WorkflowGuide = () => {
+        const ArrowRight = () => (
+          <svg
+            className="w-6 h-6 text-gray-500 mx-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        );
+        
+        const WorkflowStep = ({ bgColor, children }) => (
+          <div className={`px-4 py-2 rounded-full font-semibold text-white ${bgColor}`}>
+            {children}
+          </div>
+        );
+        
+        return (
+          <div className="mt-12 flex flex-col items-center">
+            <div className="flex items-center justify-center flex-wrap gap-2">
+              <WorkflowStep bgColor="bg-blue-600/80">Buy first</WorkflowStep>
+              <ArrowRight />
+              <WorkflowStep bgColor="bg-indigo-600/80">Then this</WorkflowStep>
+              <ArrowRight />
+              <WorkflowStep bgColor="bg-purple-600/80">Then this</WorkflowStep>
+              <ArrowRight />
+              <WorkflowStep bgColor="bg-fuchsia-600/80">Then this</WorkflowStep>
+            </div>
+            <div className="mt-4 p-4 rounded-3xl border border-white/10 bg-gray-800/80 flex flex-col text-sm text-gray-400">
+              Marketing or Product Owned
+            </div>
+          </div>
+        );
+      };
+      
+      const App = () => {
+        const [activeFilter, setActiveFilter] = useState("any");
+        
+        return (
+          <div className="bg-[#101010] min-h-screen font-sans p-4 md:p-8 lg:p-12 flex flex-col items-center">
+            <div className="w-full max-w-7xl">
+              <Header />
+              <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+              <StackDiagram activeFilter={activeFilter} />
+              <WorkflowGuide />
+            </div>
+          </div>
+        );
+      };
+      
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
   </body>
 </html>
